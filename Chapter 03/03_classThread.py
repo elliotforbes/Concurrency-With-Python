@@ -5,6 +5,9 @@ class myWorkerThread(Thread):
   def __init__(self):
     print("Hello world")
     Thread.__init__(self)
+  
+  def run(self):
+    print("Thread is now running")
 
 myThread = myWorkerThread()
 print("Created my Thread Object")
