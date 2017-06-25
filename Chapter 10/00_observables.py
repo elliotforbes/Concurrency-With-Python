@@ -27,4 +27,3 @@ class StockObserver(Observer):
 
 source = Observable.create(buy_stock_events)
 source.subscribe(StockObserver())
-source.subscribe(StockObserver())

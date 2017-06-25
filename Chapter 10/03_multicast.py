@@ -22,5 +22,5 @@ class Subscriber(Observer):
 
 source = Observable.create(news_events)
 source.subscribe(Subscriber("Grant"))
-source.subscribe(Subscriber("Callum"))
+source.subscribe(Subscriber("Barry"))
 source.subscribe(Subscriber("Sophie"))
