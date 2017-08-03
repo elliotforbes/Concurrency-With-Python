@@ -9,21 +9,23 @@ def myTask(queue):
   queue.task_done()
 
 def main():
-  sharedQueue = queue.Queue()
+  m = multiprocessing.Manager()
+  sharedQueue = m.Queue()
   sharedQueue.put(2)
   sharedQueue.put(3)
   sharedQueue.put(4)
 
   process1 = multiprocessing.Process(target=myTask, args=(sharedQueue,))
   process1.start()
-  process1.join()
 
   process2 = multiprocessing.Process(target=myTask, args=(sharedQueue,))
   process2.start()
-  process2.join()
   
   process3 = multiprocessing.Process(target=myTask, args=(sharedQueue,))
   process3.start()
+  
+  process2.join()
+  process1.join()
   process3.join()
 
 if __name__ == '__main__':

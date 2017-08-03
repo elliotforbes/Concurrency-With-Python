@@ -12,10 +12,12 @@ def threadWorker():
   # goes into a not-runnable state. We can do no further work
   # on this particular thread
   time.sleep(10)
+  # Thread then completes its tasks and terminates
+  print("My Thread is terminating")
 
 # At this point in time, the thread has no state
 # it hasn't been allocated any system resources
-myThread = threading.Thread(target=threadWorker, args=(,))
+myThread = threading.Thread(target=threadWorker)
  
 # When we call myThread.start(), Python allocates the necessary system 
 # resources in order for our thread to run and then calls the thread's

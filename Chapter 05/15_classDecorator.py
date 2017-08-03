@@ -1,3 +1,5 @@
+from threading import Lock
+
 def lock_class(methodnames, lockfactory):
     return lambda cls: make_threadsafe(cls, methodnames, lockfactory)
 
@@ -29,6 +31,8 @@ def make_threadsafe(cls, methodnames, lockfactory):
 
 @lock_class(['add','remove'], Lock)
 class ClassDecoratorLockedSet(set):
+
     @lock_method # if you double-lock a method, a TypeError is raised
-    def frobnify(self):
+    def lockedMethod(self):
+        print("This section of our code would be thread safe")
         pass

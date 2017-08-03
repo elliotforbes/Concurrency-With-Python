@@ -1,26 +1,10 @@
-from rx import Observable, Observer
+from rx import Observable
+from random import randint
 
-def news_events(observer):
-  observer.on_next("Concurrency with Python Published!")
-  observer.on_next("Book reaches top of the charts")
-  observer.on_next("Author Retires Early")
-  observer.on_completed()
 
-class Subscriber(Observer):
+three_emissions = Observable.range(1, 3)
 
-  def __init__(self, ident):
-    self.id = ident
+three_random_ints = three_emissions.map(lambda i: randint(1, 100000))
 
-  def on_next(self, value):
-    print("Subscriber: {} Received: {}".format(self.id, value))
-
-  def on_completed(self):
-    print("Subscriber: {} Received All Important News".format(self.id))
-
-  def on_error(self, error):
-    print("Error Occurred: {}".format(error))
-
-source = Observable.create(news_events)
-source.subscribe(Subscriber("Grant"))
-source.subscribe(Subscriber("Barry"))
-source.subscribe(Subscriber("Sophie"))
+three_random_ints.subscribe(lambda i: print("Subscriber 1 Received: {0}".format(i)))
+three_random_ints.subscribe(lambda i: print("Subscriber 2 Received: {0}".format(i)))
