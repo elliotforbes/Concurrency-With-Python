@@ -12,7 +12,8 @@ def workerA():
     while counter < 1000:
       counter += 1
       print("Worker A is incrementing counter to {}".format(counter))
-      
+      sleepTime = random.randint(0, 1)
+      time.sleep(sleepTime)      
   finally:
     lock.release()
 
@@ -23,7 +24,8 @@ def workerB():
     while counter > -1000:
       counter -= 1
       print("Worker B is decrementing counter to {}".format(counter))
-      
+      sleepTime = random.randint(0, 1)
+      time.sleep(sleepTime)      
   finally:
     lock.release()
 
